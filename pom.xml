@@ -12,8 +12,23 @@
 		<maven.compiler.target>14</maven.compiler.target>
 	</properties>
 	<scm>
-		<connection>scm:git:git@github.com:bspk/httpsig-java.git</connection>
+		<connection>scm:git:https://github.com/bspk/httpsig-java.git</connection>
+		<url>https://github.com/bspk/httpsig-java</url>
+		<developerConnection>scm:git:git@github.com:bspk/httpsig-java.git</developerConnection>
 	</scm>
+	<licenses>
+		<license>
+			<name>The Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+		</license>
+	</licenses>
+	<developers>
+		<developer>
+			<id>bspk.io</id>
+			<name>Bespoke Engineering</name>
+			<url>https://bspk.io/</url>
+		</developer>
+	</developers>
 	<dependencies>
 		<dependency>
 			<groupId>org.greenbytes.http</groupId>
