@@ -6,6 +6,8 @@
 	<artifactId>httpsig</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>HTTP Messsage Signatures</name>
+	<description>HTTP Message Signature implementaiton.</description>
+	<url>https://github.com/bspk/httpsig-java</url>
 	<properties>
 		<java.version>14</java.version>
 		<maven.compiler.source>14</maven.compiler.source>
