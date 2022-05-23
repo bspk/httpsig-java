@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>io.bspk</groupId>
 	<artifactId>httpsig</artifactId>
-	<version>0.0.2</version>
+	<version>0.0.3-SNAPSHOT</version>
 	<name>HTTP Messsage Signatures</name>
 	<description>HTTP Message Signature implementaiton.</description>
 	<url>https://github.com/bspk/httpsig-java</url>
@@ -15,7 +15,7 @@
 		<connection>scm:git:https://github.com/bspk/httpsig-java.git</connection>
 		<url>https://github.com/bspk/httpsig-java</url>
 		<developerConnection>scm:git:git@github.com:bspk/httpsig-java.git</developerConnection>
-	  <tag>httpsig-0.0.2</tag>
+	  <tag>HEAD</tag>
   </scm>
 	<licenses>
 		<license>
