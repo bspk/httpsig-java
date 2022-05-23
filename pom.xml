@@ -11,6 +11,9 @@
 		<maven.compiler.source>14</maven.compiler.source>
 		<maven.compiler.target>14</maven.compiler.target>
 	</properties>
+	<scm>
+		<connection>scm:git:git@github.com:bspk/httpsig-java.git</connection>
+	</scm>
 	<dependencies>
 		<dependency>
 			<groupId>org.greenbytes.http</groupId>
