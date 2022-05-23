@@ -17,9 +17,9 @@ public class SignatureBaseBuilder {
 
 
 	private SignatureParameters sigParams;
-	private SignatureContext ctx;
+	private ComponentProvider ctx;
 
-	public SignatureBaseBuilder(SignatureParameters sigParams, SignatureContext ctx) {
+	public SignatureBaseBuilder(SignatureParameters sigParams, ComponentProvider ctx) {
 		this.sigParams = sigParams;
 		this.ctx = ctx;
 	}

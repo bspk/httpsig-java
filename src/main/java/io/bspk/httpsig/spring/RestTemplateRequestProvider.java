@@ -1,80 +1,76 @@
-package io.bspk.httpsig.servlet;
+package io.bspk.httpsig.spring;
 
-import java.net.URI;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import javax.servlet.http.HttpServletRequest;
-
+import org.springframework.http.HttpRequest;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import io.bspk.httpsig.SignatureContext;
+import io.bspk.httpsig.ComponentProvider;
 
 /**
  * @author jricher
  *
  */
-public class HttpServletRequestSignatureContext implements SignatureContext {
+public class RestTemplateRequestProvider implements ComponentProvider {
 
-	private HttpServletRequest request;
-	private URI uri;
+	private HttpRequest request;
 	private Map<String, Integer> counters;
 
-	public HttpServletRequestSignatureContext(HttpServletRequest request) {
+	public RestTemplateRequestProvider(HttpRequest request) {
 		this.request = request;
-		this.uri = URI.create(request.getRequestURL().toString()
-			+ (request.getQueryString() != null ? "?" + request.getQueryString() : ""));
 	}
 
 	@Override
 	public String getMethod() {
-		return request.getMethod();
+		return request.getMethod().toString();
 	}
 
 	@Override
 	public String getAuthority() {
-		return uri.getHost();
+		return request.getURI().getHost();
 	}
 
 	@Override
 	public String getScheme() {
-		return uri.getScheme();
+		return request.getURI().getScheme();
 	}
 
 	@Override
 	public String getTargetUri() {
-		return uri.toString();
+		return request.getURI().toString();
 	}
 
 	@Override
 	public String getRequestTarget() {
 		String reqt = "";
-		if (uri.getRawPath() != null) {
-			reqt += uri.getRawPath();
+		if (request.getURI().getRawPath() != null) {
+			reqt += request.getURI().getRawPath();
 		}
-		if (uri.getRawQuery() != null) {
-			reqt += "?" + uri.getRawQuery();
+		if (request.getURI().getRawQuery() != null) {
+			reqt += "?" + request.getURI().getRawQuery();
 		}
 		return reqt;
 	}
 
 	@Override
 	public String getPath() {
-		return uri.getRawPath();
+		return request.getURI().getRawPath();
 	}
 
 	@Override
 	public String getQuery() {
-		return uri.getRawQuery();
+		return request.getURI().getRawQuery();
 	}
 
 	@Override
 	public String getQueryParams(String name) {
-		MultiValueMap<String,String> queryParams = UriComponentsBuilder.fromUri(uri).build().getQueryParams();
+		// parse as URL query parameters
+		MultiValueMap<String,String> queryParams = UriComponentsBuilder.fromHttpRequest(request).build().getQueryParams();
+
 		List<String> values = queryParams.get(name);
 
 		if (values.size() == 1) {
@@ -92,6 +88,7 @@ public class HttpServletRequestSignatureContext implements SignatureContext {
 			counters.put(name, count + 1); // increment the count (ie: 2)
 			return values.get(count); // return the value at the position before the update (ie: 1)
 		}
+
 	}
 
 	@Override
@@ -101,7 +98,8 @@ public class HttpServletRequestSignatureContext implements SignatureContext {
 
 	@Override
 	public String getField(String name) {
-		return SignatureContext.combineFieldValues(Collections.list(request.getHeaders(name)));
+		List<String> headers = request.getHeaders().get(name);
+		return ComponentProvider.combineFieldValues(headers);
 	}
 
 }

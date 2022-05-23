@@ -15,7 +15,7 @@ import org.greenbytes.http.sfv.Type;
  * @author jricher
  *
  */
-public interface SignatureContext {
+public interface ComponentProvider {
 
 	// derived, for requests
 	String getMethod();
