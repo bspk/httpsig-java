@@ -8,9 +8,9 @@ Requires Java 14+.
 
 ``` xml
 <dependency>
-  <groupId>io.bspk</groupId>
-  <artifactId>httpsig</artifactId>
-  <version>0.0.4-SNAPSHOT</version>
+  <groupId>${project.groupId}</groupId>
+  <artifactId>${project.artifactId}</artifactId>
+  <version>${project.version}</version>
 </dependency>
 ```
 
