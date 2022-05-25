@@ -149,7 +149,7 @@
                 <executions>
                     <execution>
                         <id>readme</id>
-                        <phase>process-resources</phase>
+                        <phase>none</phase>
                         <goals>
                             <goal>copy-resources</goal>
                         </goals>
