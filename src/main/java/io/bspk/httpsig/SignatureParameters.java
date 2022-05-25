@@ -173,6 +173,9 @@ public class SignatureParameters {
 		return list;
 	}
 
+	/**
+	 * Add a component without parameters.
+	 */
 	public SignatureParameters addComponentIdentifier(String identifier) {
 		if (!identifier.startsWith("@")) {
 			componentIdentifiers.add(StringItem.valueOf(identifier.toLowerCase()));
@@ -182,6 +185,10 @@ public class SignatureParameters {
 		return this;
 	}
 
+	/**
+	 * Add a component with optional parameters. Field components are assumed to be
+	 * already set to lowercase.
+	 */
 	public SignatureParameters addComponentIdentifier(StringItem identifier) {
 		componentIdentifiers.add(identifier);
 		return this;
@@ -196,7 +203,14 @@ public class SignatureParameters {
 
 	// does not ignore parameters
 	public boolean containsComponentIdentifier(StringItem identifier) {
-		return componentIdentifiers.contains(identifier);
+		return componentIdentifiers.stream()
+			.filter((i) -> {
+				return
+					i.get().equals(identifier.get())
+					&& i.getParams().equals(identifier.getParams());
+			})
+			.findAny()
+			.isPresent();
 	}
 
 	/**
