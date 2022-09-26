@@ -11,6 +11,8 @@ import org.greenbytes.http.sfv.Parser;
 import org.greenbytes.http.sfv.StringItem;
 import org.greenbytes.http.sfv.Type;
 
+import com.google.common.base.Strings;
+
 /**
  * @author jricher
  *
@@ -37,9 +39,15 @@ public interface ComponentProvider {
 		if (fields == null) {
 			return null;
 		} else {
-			return fields.stream()
+			String val = fields.stream()
 				.map(String::strip)
+                .map(v -> {
+                    // replace obs-fold if it's in there
+                    return v.replaceAll("[\\s\\t]*\\r\\n[\\s\\t]*", " ");
+                })
 				.collect(Collectors.joining(", "));
+
+			return Strings.emptyToNull(val);
 		}
 	}
 
