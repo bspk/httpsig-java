@@ -275,4 +275,9 @@ public class SignatureParameters {
 		}
 
 	}
+
+	@Override
+	public String toString() {
+		return "SignatureParameters: " + toComponentValue().serialize();
+	}
 }
