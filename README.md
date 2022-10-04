@@ -10,7 +10,7 @@ Requires Java 14+.
 <dependency>
   <groupId>io.bspk</groupId>
   <artifactId>httpsig</artifactId>
-  <version>0.0.6</version>
+  <version>0.0.7-SNAPSHOT</version>
 </dependency>
 ```
 
