@@ -72,7 +72,7 @@ public interface ComponentProvider {
 					return getQuery();
 				case "@status":
 					return getStatus();
-				case "@query-params":
+				case "@query-param":
 				{
 					if (componentIdentifier.getParams().containsKey("name")) {
 						Item<? extends Object> nameParameter = componentIdentifier.getParams().get("name");

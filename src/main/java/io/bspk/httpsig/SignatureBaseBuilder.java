@@ -49,7 +49,7 @@ public class SignatureBaseBuilder {
 		sigParams.toComponentValue().serializeTo(base);
 
 
-		log.info("~~~ Signature Base  :\n ~~~ : {}", Joiner.on("\n~~~ : ").join(Splitter.on("\n").split(base.toString())));
+		//log.info("~~~ Signature Base  :\n ~~~ : {}", Joiner.on("\n~~~ : ").join(Splitter.on("\n").split(base.toString())));
 
 		return base.toString().getBytes();
 	}

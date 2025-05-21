@@ -5,6 +5,7 @@ import java.nio.charset.Charset;
 import java.util.List;
 
 import org.apache.hc.core5.http.NameValuePair;
+import org.apache.hc.core5.net.PercentCodec;
 import org.apache.hc.core5.net.WWWFormCodec;
 
 /**
@@ -68,7 +69,7 @@ public abstract class UriRequestComponentProviderAdapter extends RequestComponen
     @Override
     public String getQuery()
     {
-        return uri.getQuery();
+        return "?" + uri.getQuery();
     }
 
 
@@ -79,6 +80,7 @@ public abstract class UriRequestComponentProviderAdapter extends RequestComponen
         return params.stream()
                 .filter(p -> p.getName().equals(name))
                 .map(NameValuePair::getValue)
+                .map(v -> PercentCodec.encode(v, Charset.defaultCharset()))
                 .reduce((a, b) -> {
                     throw new IllegalArgumentException("Found two named parameters, unsupported opperation");
                 })
